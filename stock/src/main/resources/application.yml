@@ -1,0 +1,9 @@
+spring:
+  application:
+    name: stock
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 192.168.102.254
+server:
+  port: 9002
