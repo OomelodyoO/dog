@@ -5,18 +5,17 @@ import win.zhangzhixing.order.model.Order;
 import win.zhangzhixing.order.response.BoolResp;
 import win.zhangzhixing.order.response.OrderResp;
 
-import java.math.BigDecimal;
 import java.util.Date;
 
 public interface IOrderService {
 
     OrderResp create(Order order);
 
-    OrderResp update(Integer id, Order nOrder);
+    BoolResp delete(String id);
 
-    BoolResp delete(Integer id);
+    OrderResp update(String id, Order nOrder);
 
-    OrderResp get(Integer id);
+    OrderResp get(String id);
 
-    Page<OrderResp> query(String userId, String productId, Integer status, Date startOrderTime, Date endOrderTime, BigDecimal totalAmount, Page<OrderResp> page);
+    Page<OrderResp> query(String userId, String productId, String status, Date startCreateTime, Date endCreateTime, Page<OrderResp> page);
 }

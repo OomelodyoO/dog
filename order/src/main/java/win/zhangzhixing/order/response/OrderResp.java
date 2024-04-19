@@ -11,12 +11,12 @@ import java.util.Date;
 @Data
 @NoArgsConstructor
 public class OrderResp {
-    private Integer id;
+    private String id;
     private String userId;
     private String productId;
-    private Integer status;
+    private String status;
     @JsonFormat(shape = JsonFormat.Shape.NUMBER_INT)
-    private Date orderTime;
+    private Date createTime;
     private BigDecimal totalAmount;
 
     public OrderResp(Order order) {
@@ -24,7 +24,7 @@ public class OrderResp {
         setUserId(order.getUserId());
         setProductId(order.getProductId());
         setStatus(order.getStatus());
-        setOrderTime(order.getOrderTime());
+        setCreateTime(order.getCreateTime());
         setTotalAmount(order.getTotalAmount());
     }
 }

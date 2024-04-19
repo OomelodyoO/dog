@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="win.zhangzhixing.product.mapper.ProductMapper">
+    <select id="query" resultType="win.zhangzhixing.product.response.ProductResp">
+        SELECT p.id, p.name, p.description, p.price, p.qty, p.create_time
+        FROM t_product p
+        <where>
+            <if test="name != null and name !=''">
+                and name = #{name}
+            </if>
+            <if test="description != null and description !=''">
+                and description = #{description}
+            </if>
+            <if test="startCreateTime != null">
+                <![CDATA[and create_time >= #{startCreateTime}]]>
+            </if>
+            <if test="endCreateTime != null">
+                <![CDATA[and create_time <= #{endCreateTime}]]>
+            </if>
+        </where>
+        ORDER BY p.create_time DESC
+    </select>
+</mapper>

@@ -15,10 +15,9 @@ public interface OrderMapper extends BaseMapper<Order> {
     Page<OrderResp> query(
             @Param("userId") String userId,
             @Param("productId") String productId,
-            @Param("status") Integer status,
-            @Param("startOrderTime") Date startOrderTime,
-            @Param("endOrderTime") Date endOrderTime,
-            @Param("totalAmount") BigDecimal totalAmount,
+            @Param("status") String status,
+            @Param("startCreateTime") Date startCreateTime,
+            @Param("endCreateTime") Date endCreateTime,
             @Param("page") Page<OrderResp> page
     );
 }

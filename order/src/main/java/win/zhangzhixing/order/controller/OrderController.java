@@ -8,7 +8,6 @@ import win.zhangzhixing.order.response.BoolResp;
 import win.zhangzhixing.order.response.OrderResp;
 import win.zhangzhixing.order.service.IOrderService;
 
-import java.math.BigDecimal;
 import java.util.Date;
 
 @RestController
@@ -26,17 +25,17 @@ public class OrderController {
     }
 
     @DeleteMapping(value = "/{id}")
-    public BoolResp delete(@PathVariable Integer id) {
+    public BoolResp delete(@PathVariable String id) {
         return orderService.delete(id);
     }
 
     @PutMapping(value = "/{id}")
-    public OrderResp update(@PathVariable Integer id, @RequestBody Order nOrder) {
+    public OrderResp update(@PathVariable String id, @RequestBody Order nOrder) {
         return orderService.update(id, nOrder);
     }
 
     @GetMapping(value = "/{id}")
-    public OrderResp get(@PathVariable Integer id) {
+    public OrderResp get(@PathVariable String id) {
         return orderService.get(id);
     }
 
@@ -44,10 +43,9 @@ public class OrderController {
     public Page<OrderResp> query(
             @RequestParam(value = "userId", required = false) String userId,
             @RequestParam(value = "productId", required = false) String productId,
-            @RequestParam(value = "status", required = false) Integer status,
-            @RequestParam(value = "startOrderTime", required = false) Long startOrderTime,
-            @RequestParam(value = "endOrderTime", required = false) Long endOrderTime,
-            @RequestParam(value = "totalAmount", required = false) BigDecimal totalAmount,
+            @RequestParam(value = "status", required = false) String status,
+            @RequestParam(value = "startCreateTimestamp", required = false) Long startCreateTimestamp,
+            @RequestParam(value = "endCreateTimestamp", required = false) Long endCreateTimestamp,
             @RequestParam(value = "current", required = false, defaultValue = "1") Integer current,
             @RequestParam(value = "size", required = false, defaultValue = "10") Integer size
     ) {
@@ -55,9 +53,8 @@ public class OrderController {
                 userId,
                 productId,
                 status,
-                ObjectUtils.isEmpty(startOrderTime) ? null : new Date(startOrderTime),
-                ObjectUtils.isEmpty(endOrderTime) ? null : new Date(endOrderTime),
-                totalAmount,
+                ObjectUtils.isEmpty(startCreateTimestamp) ? null : new Date(startCreateTimestamp),
+                ObjectUtils.isEmpty(endCreateTimestamp) ? null : new Date(endCreateTimestamp),
                 new Page<>(current, size)
         );
     }

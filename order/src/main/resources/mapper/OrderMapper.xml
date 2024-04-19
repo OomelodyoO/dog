@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="win.zhangzhixing.order.mapper.OrderMapper">
     <select id="query" resultType="win.zhangzhixing.order.response.OrderResp">
-        SELECT o.id, o.user_id, o.product_id, o.status, o.order_time, o.total_amount
+        SELECT o.id, o.user_id, o.product_id, o.status, o.create_time, o.total_amount
         FROM t_order o
         <where>
             <if test="userId != null and userId !=''">
@@ -14,15 +14,13 @@
             <if test="status != null and status !=''">
                 and status = #{status}
             </if>
-            <if test="startOrderTime != null">
-                <![CDATA[and order_time >= #{startOrderTime}]]>
+            <if test="startCreateTime != null">
+                <![CDATA[and create_time >= #{startCreateTime}]]>
             </if>
-            <if test="endOrderTime != null">
-                <![CDATA[and order_time <= #{endOrderTime}]]>
-            </if>
-            <if test="totalAmount != null">
-                and total_amount = #{totalAmount}
+            <if test="endCreateTime != null">
+                <![CDATA[and create_time <= #{endCreateTime}]]>
             </if>
         </where>
+        ORDER BY o.create_time DESC
     </select>
 </mapper>

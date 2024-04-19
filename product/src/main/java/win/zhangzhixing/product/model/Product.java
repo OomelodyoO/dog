@@ -1,4 +1,4 @@
-package win.zhangzhixing.order.model;
+package win.zhangzhixing.product.model;
 
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
@@ -9,18 +9,18 @@ import java.math.BigDecimal;
 import java.util.Date;
 
 @Data
-@TableName(value = "t_order")
-public class Order {
+@TableName(value = "t_product")
+public class Product {
     @TableId(value = "id")
     private String id;
-    @TableField(value = "user_id")
-    private String userId;
-    @TableField(value = "product_id")
-    private String productId;
-    @TableField(value = "status")
-    private String status;
+    @TableField(value = "name")
+    private String name;
+    @TableField(value = "description")
+    private String description;
+    @TableField(value = "price")
+    private BigDecimal price;
+    @TableField(value = "qty")
+    private Integer qty;
     @TableField(value = "create_time")
     private Date createTime;
-    @TableField(value = "total_amount")
-    private BigDecimal totalAmount;
 }

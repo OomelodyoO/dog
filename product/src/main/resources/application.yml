@@ -1,14 +1,14 @@
 server:
-  port: 9002
+  port: 9003
 spring:
   application:
-    name: order
+    name: product
   cloud:
     nacos:
       discovery:
         server-addr: 192.168.102.254
         namespace: dev
-        group: order
+        group: product
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://192.168.102.254:3306/dog
