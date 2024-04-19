@@ -8,7 +8,11 @@ spring:
       discovery:
         server-addr: 192.168.102.254
         namespace: dev
-        group: order
+        group: dog
+    sentinel:
+      transport:
+        dashboard: localhost:8080
+        port: 8719
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://192.168.102.254:3306/dog
@@ -22,3 +26,6 @@ mybatis-plus:
   configuration:
     map-underscore-to-camel-case: true
   mapper-locations: classpath*:mapper/**/*Mapper.xml
+feign:
+  sentinel:
+    enabled: true

@@ -23,4 +23,6 @@ public class Order {
     private Date createTime;
     @TableField(value = "total_amount")
     private BigDecimal totalAmount;
+    @TableField(value = "qty")
+    private Integer qty;
 }

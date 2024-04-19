@@ -1,8 +1,10 @@
 package win.zhangzhixing.order.service.impl;
 
+import com.alibaba.fastjson.JSONObject;
 import com.alibaba.nacos.common.utils.UuidUtils;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import org.springframework.stereotype.Service;
+import win.zhangzhixing.order.feign.IProductService;
 import win.zhangzhixing.order.mapper.OrderMapper;
 import win.zhangzhixing.order.model.Order;
 import win.zhangzhixing.order.response.BoolResp;
@@ -14,9 +16,11 @@ import java.util.Date;
 @Service
 public class OrderServiceImpl implements IOrderService {
     private final OrderMapper orderMapper;
+    private final IProductService productService;
 
-    public OrderServiceImpl(OrderMapper orderMapper) {
+    public OrderServiceImpl(OrderMapper orderMapper, IProductService productService) {
         this.orderMapper = orderMapper;
+        this.productService = productService;
     }
 
     @Override
@@ -24,6 +28,10 @@ public class OrderServiceImpl implements IOrderService {
         order.setId(UuidUtils.generateUuid());
         order.setCreateTime(new Date());
         orderMapper.insert(order);
+        // 减库存
+        JSONObject jsonObject = new JSONObject();
+        jsonObject.put("qty", order.getQty());
+        System.out.println(productService.update(order.getProductId(), jsonObject));
         return new OrderResp(orderMapper.selectById(order.getId()));
     }
 

@@ -18,6 +18,7 @@ public class OrderResp {
     @JsonFormat(shape = JsonFormat.Shape.NUMBER_INT)
     private Date createTime;
     private BigDecimal totalAmount;
+    private Integer qty;
 
     public OrderResp(Order order) {
         setId(order.getId());
@@ -26,5 +27,6 @@ public class OrderResp {
         setStatus(order.getStatus());
         setCreateTime(order.getCreateTime());
         setTotalAmount(order.getTotalAmount());
+        setQty(order.getQty());
     }
 }

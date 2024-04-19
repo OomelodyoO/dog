@@ -1,0 +1,52 @@
+version: "3.8"
+services:
+  mysql-5:
+    image: mysql:5.7.44
+    container_name: mysql-5
+    command: mysqld --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: root #设置root帐号密码
+    ports:
+      - 3306:3306
+    volumes:
+      - /home/zhang/docker/mysql/db-5:/var/lib/mysql #数据文件挂载
+      - /home/zhang/docker/mysql/conf-5:/etc/mysql/conf.d #配置文件挂载
+      - /home/zhang/docker/mysql/log-5:/var/log/mysql #日志文件挂载
+    networks:
+      - default
+  redis:
+    image: redis:5.0.14
+    container_name: redis
+    command: redis-server --appendonly yes
+    restart: always
+    volumes:
+      - /home/zhang/docker/redis/data:/data #数据文件挂载
+    ports:
+      - 6379:6379
+    networks:
+      - default
+  nacos:
+    image: nacos/nacos-server:v2.3.1
+    container_name: nacos
+    environment:
+      - MODE=standalone
+    volumes:
+      - /home/zhang/docker/nacos/standalone-logs:/home/nacos/logs
+    ports:
+      - 8848:8848
+      - 9848:9848
+    networks:
+      - default
+#  sentinel:
+#    image: bladex/sentinel-dashboard:1.8.7
+#    container_name: sentinel
+#    ports:
+#      - 8858:8858
+#      - 8719:8719
+#    networks:
+#      - default
+networks:
+  default:
+    external:
+      name: custom-bridge
