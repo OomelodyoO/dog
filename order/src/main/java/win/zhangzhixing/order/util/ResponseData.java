@@ -9,8 +9,8 @@ import java.io.Serializable;
 @Getter
 @Setter
 public class ResponseData<T> implements Serializable {
-    public static final Integer SUCCESS = 0;
-    public static final Integer FAIL = 1;
+    public static final Integer SUCCESS = 1;
+    public static final Integer FAIL = 0;
     private Integer status;
     @JsonProperty(value = "errorCode")
     private String errorCode;

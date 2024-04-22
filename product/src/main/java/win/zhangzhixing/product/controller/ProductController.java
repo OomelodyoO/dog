@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import org.springframework.util.ObjectUtils;
 import org.springframework.web.bind.annotation.*;
 import win.zhangzhixing.product.model.Product;
+import win.zhangzhixing.product.request.DeStockReq;
 import win.zhangzhixing.product.response.BoolResp;
 import win.zhangzhixing.product.response.ProductResp;
 import win.zhangzhixing.product.service.IProductService;
@@ -55,5 +56,10 @@ public class ProductController {
                 ObjectUtils.isEmpty(endCreateTimestamp) ? null : new Date(endCreateTimestamp),
                 new Page<>(current, size)
         );
+    }
+
+    @PutMapping(value = "/deStock/{id}")
+    public ProductResp deStock(@PathVariable String id, @RequestBody DeStockReq deStockReq) {
+        return productService.deStock(id, deStockReq);
     }
 }

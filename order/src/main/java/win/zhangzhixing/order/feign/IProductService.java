@@ -9,6 +9,6 @@ import win.zhangzhixing.order.feign.fallback.ProductServiceFallback;
 
 @FeignClient(value = "product", fallback = ProductServiceFallback.class)
 public interface IProductService {
-    @PutMapping(value = "/product/{id}")
-    JSONObject update(@PathVariable("id") String id, @RequestBody JSONObject product);
+    @PutMapping(value = "/product/deStock/{id}")
+    JSONObject deStock(@PathVariable("id") String id, @RequestBody JSONObject product);
 }
