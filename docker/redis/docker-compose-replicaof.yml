@@ -1,0 +1,42 @@
+version: "3.8"
+services:
+  redis-m:
+    image: redis:5.0.14
+    container_name: redis-m
+    command: redis-server /usr/local/etc/redis/redis.conf
+    restart: always
+    volumes:
+      - ./data-m/data:/data
+      - ./conf/redis-master.conf:/usr/local/etc/redis/redis.conf
+    ports:
+      - 6379:6379
+    networks:
+      - default
+  redis-r-1:
+    image: redis:5.0.14
+    container_name: redis-r-1
+    command: redis-server /usr/local/etc/redis/redis.conf
+    restart: always
+    volumes:
+      - ./redis-r-1/data:/data
+      - ./conf/replicaof/redis-replicaof.conf:/usr/local/etc/redis/redis.conf
+    ports:
+      - 16379:6379
+    networks:
+      - default
+  redis-r-2:
+    image: redis:5.0.14
+    container_name: redis-r-2
+    command: redis-server /usr/local/etc/redis/redis.conf
+    restart: always
+    volumes:
+      - ./redis-r-2/data:/data
+      - ./conf/replicaof/redis-replicaof.conf:/usr/local/etc/redis/redis.conf
+    ports:
+      - 26379:6379
+    networks:
+      - default
+networks:
+  default:
+    name: custom-bridge
+    external: true

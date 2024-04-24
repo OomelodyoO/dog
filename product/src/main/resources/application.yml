@@ -25,8 +25,10 @@ spring:
   data:
     redis:
       database: 0
-      host: 192.168.102.254
-      port: 6379
+#      host: 192.168.102.254
+#      port: 6379
+      cluster:
+        nodes: 192.168.102.254:6379,192.168.102.254:6380,192.168.102.254:6381,192.168.102.254:6382,192.168.102.254:6383,192.168.102.254:6384
 mybatis-plus:
   configuration:
     map-underscore-to-camel-case: true
