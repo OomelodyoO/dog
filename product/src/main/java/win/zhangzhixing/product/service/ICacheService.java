@@ -5,4 +5,6 @@ import win.zhangzhixing.product.response.BoolResp;
 
 public interface ICacheService {
     BoolResp set(JSONObject jsonObject);
+
+    Object get(String key);
 }

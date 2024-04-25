@@ -81,14 +81,78 @@ services:
       - ./redis/redis-c-6/data:/data
       - ./redis/conf/cluster/redis-cluster-6.conf:/usr/local/etc/redis/redis.conf
     network_mode: host
-#  sentinel:
-#    image: bladex/sentinel-dashboard:1.8.7
-#    container_name: sentinel
-#    ports:
-#      - 8858:8858
-#      - 8719:8719
-#    networks:
-#      - default
+#  redis-m:
+#    image: redis:5.0.14
+#    container_name: redis-m
+#    command: redis-server /usr/local/etc/redis/redis.conf
+#    restart: always
+#    volumes:
+#      - ./redis/data-m/data:/data
+#      - ./redis/conf/redis-master.conf:/usr/local/etc/redis/redis.conf
+#    network_mode: host
+#  redis-r-1:
+#    image: redis:5.0.14
+#    container_name: redis-r-1
+#    command: redis-server /usr/local/etc/redis/redis.conf
+#    restart: always
+#    volumes:
+#      - ./redis/redis-r-1/data:/data
+#      - ./redis/conf/replicaof/redis-replicaof-1.conf:/usr/local/etc/redis/redis.conf
+#    network_mode: host
+#  redis-r-2:
+#    image: redis:5.0.14
+#    container_name: redis-r-2
+#    command: redis-server /usr/local/etc/redis/redis.conf
+#    restart: always
+#    volumes:
+#      - ./redis/redis-r-2/data:/data
+#      - ./redis/conf/replicaof/redis-replicaof-2.conf:/usr/local/etc/redis/redis.conf
+#    network_mode: host
+#  redis-s-1:
+#    image: redis:5.0.14
+#    container_name: redis-s-1
+#    command: redis-sentinel /usr/local/etc/redis/redis.conf
+#    restart: always
+#    volumes:
+#      - ./redis/redis-s-1/data:/data
+#      - ./redis/conf/sentinel/redis-sentinel-1.conf:/usr/local/etc/redis/redis.conf
+#    network_mode: host
+#  redis-s-2:
+#    image: redis:5.0.14
+#    container_name: redis-s-2
+#    command: redis-sentinel /usr/local/etc/redis/redis.conf
+#    restart: always
+#    volumes:
+#      - ./redis/redis-s-2/data:/data
+#      - ./redis/conf/sentinel/redis-sentinel-2.conf:/usr/local/etc/redis/redis.conf
+#    network_mode: host
+#  redis-s-3:
+#    image: redis:5.0.14
+#    container_name: redis-s-3
+#    command: redis-sentinel /usr/local/etc/redis/redis.conf
+#    restart: always
+#    volumes:
+#      - ./redis/redis-s-3/data:/data
+#      - ./redis/conf/sentinel/redis-sentinel-3.conf:/usr/local/etc/redis/redis.conf
+#    network_mode: host
+#  redis-s-4:
+#    image: redis:5.0.14
+#    container_name: redis-s-4
+#    command: redis-sentinel /usr/local/etc/redis/redis.conf
+#    restart: always
+#    volumes:
+#      - ./redis/redis-s-4/data:/data
+#      - ./redis/conf/sentinel/redis-sentinel-4.conf:/usr/local/etc/redis/redis.conf
+#    network_mode: host
+#  redis-s-5:
+#    image: redis:5.0.14
+#    container_name: redis-s-5
+#    command: redis-sentinel /usr/local/etc/redis/redis.conf
+#    restart: always
+#    volumes:
+#      - ./redis/redis-s-5/data:/data
+#      - ./redis/conf/sentinel/redis-sentinel-5.conf:/usr/local/etc/redis/redis.conf
+#    network_mode: host
 networks:
   default:
     name: custom-bridge

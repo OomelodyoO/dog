@@ -18,7 +18,12 @@ public class CacheServiceImpl implements ICacheService {
 
     @Override
     public BoolResp set(JSONObject jsonObject) {
-        redisTemplate.opsForValue().set(jsonObject.getString("key"), jsonObject.getObject("value", Object.class));
+        redisTemplate.opsForValue().set(jsonObject.getString("key"), jsonObject);
         return new BoolResp(true);
+    }
+
+    @Override
+    public Object get(String key) {
+        return redisTemplate.opsForValue().get(key);
     }
 }
